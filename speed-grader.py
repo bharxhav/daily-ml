@@ -38,6 +38,7 @@ def main():
     assignment_number = 1
     assignment_prompt = ""
     results = {}
+    failed_runs = []
 
     # Read assignment data from a JSON file
     with open(f'./meta/assignment{assignment_number} prompt.txt', 'r') as file:
@@ -64,6 +65,7 @@ def main():
             results[uni] = json.loads(ret)
         except:
             print('FAILED: ', uni)
+            failed_runs.append(uni)
 
         # print(uni, results[uni])
         # break
@@ -80,6 +82,8 @@ def main():
                              'A2': value['A2'], 'AR2': value['AR2'],
                              'A3': value['A3'], 'AR3': value['AR3'],
                              })
+    
+    print(failed_runs)
 
 if __name__ == "__main__":
     load_dotenv()
